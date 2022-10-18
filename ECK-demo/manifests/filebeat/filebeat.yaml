@@ -1,0 +1,98 @@
+apiVersion: beat.k8s.elastic.co/v1beta1
+kind: Beat
+metadata:
+  name: filebeat
+spec:
+  type: filebeat
+  version: 8.4.1
+  elasticsearchRef:
+    name: elasticsearch-logs
+  config:
+    setup.template.enabled: false
+    setup.ilm.enabled: false
+    logging.metrics.enabled: true
+    monitoring:
+      enabled: true
+    fields:
+      data_stream.type: log
+      data_stream.category: middleware
+      environment.type: production
+      kubernetes.cluster_name: eck-demo
+    fields_under_root: true
+    filebeat.autodiscover.providers:
+      - type: kubernetes
+        node: ${NODE_NAME}
+        hints:
+          enabled: true
+          default_config:
+            enabled: "false"
+            type: container
+            paths:
+              - /var/log/containers/*-${data.kubernetes.container.id}.log
+            exclude_lines: [ 'kube-probe',"^\\s+[\\-`('.|_]" ]
+        include_labels: [ "" ]
+        add_resource_metadata:
+          namespace:
+            enabled: false
+          node:
+            enabled: false
+          deployment: false
+          cronjob: false
+
+    processors:
+      - copy_fields:
+          fields:
+            - from: kubernetes.namespace
+              to: environment.name
+      - copy_fields:
+          fields:
+            - from: kubernetes.container.name
+              to: app.name
+      - drop_fields:
+          fields: ["agent", "kubernetes.namespace_uid", "kubernetes.node.uid", "kubernetes.pod.uid", "kubernetes.replicaset.name" , "log.offset", "stream", "container.runtime", "ecs.version"]
+          ignore_missing: false
+      - decode_json_fields:
+          when:
+            regexp:
+              message: '^\{.*\:.*\}$'
+          fields: [ "message" ]
+          target: "message_fields"
+
+    output.elasticsearch.index: "company-filebeat-%{[data_stream.type]}-%{[data_stream.category]}-%{[environment.type]}"
+  daemonSet:
+    podTemplate:
+      metadata:
+        annotations:
+          co.elastic.logs/enabled: "false"
+      spec:
+        serviceAccount: filebeat
+        automountServiceAccountToken: true
+        terminationGracePeriodSeconds: 30
+        dnsPolicy: ClusterFirstWithHostNet
+        hostNetwork: true # Allows to provide richer host metadata
+        containers:
+          - name: filebeat
+            securityContext:
+              runAsUser: 0
+            volumeMounts:
+              - name: varlogcontainers
+                mountPath: /var/log/containers
+              - name: varlogpods
+                mountPath: /var/log/pods
+            env:
+              - name: NODE_NAME
+                valueFrom:
+                  fieldRef:
+                    fieldPath: spec.nodeName
+        tolerations:
+          - effect: NoSchedule
+            key: CriticalAddonsOnly
+            operator: "Exists"
+        volumes:
+          - name: varlogcontainers
+            hostPath:
+              path: /var/log/containers
+          - name: varlogpods
+            hostPath:
+              path: /var/log/pods
+

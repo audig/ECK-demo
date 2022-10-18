@@ -1,0 +1,30 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana-logs
+spec:
+  version: 8.4.1
+  count: 1
+  elasticsearchRef:
+    name: elasticsearch-logs
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+  monitoring:
+    metrics:
+      elasticsearchRefs:
+        - name: elasticsearch-logs
+    logs:
+      elasticsearchRefs:
+        - name: elasticsearch-logs
+  config:
+    monitoring.ui.ccs.enabled: false
+  podTemplate:
+    spec:
+      containers:
+        - name: kibana
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: 1

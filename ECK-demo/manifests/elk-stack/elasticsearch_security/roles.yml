@@ -1,0 +1,5 @@
+company_filebeat_indices_admin:
+  cluster: [ 'monitor' ]
+  indices:
+    - names: [ '*' ]
+      privileges: [ 'all' ]

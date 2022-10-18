@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: elastic-system
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+#https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-users-and-roles.html#k8s_file_realm
+  - name: company-elasticsearch-users-roles
+    files:
+      - elasticsearch_security/users_roles
+  - name: company-elasticsearch-roles
+    files:
+      - elasticsearch_security/roles.yml
+resources:
+  - namespace.yaml
+  - elasticsearch.yaml
+  - kibana.yaml
+
