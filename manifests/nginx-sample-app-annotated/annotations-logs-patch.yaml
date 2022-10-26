@@ -1,0 +1,7 @@
+- op: add
+  path: /spec/template/metadata/annotations
+  value:
+    co.elastic.logs/enabled: "true"
+    co.elastic.logs/processors.1.add_fields.target: "data_stream"
+    co.elastic.logs/processors.1.add_fields.fields.type: "access-log"
+    co.elastic.logs/processors.2.add_fields.fields.category: "app"
