@@ -7,7 +7,7 @@
 ## Conclusion
 
 * Est-ce que le déploiement d'un stack a été simple ?
-    * Déscriptif clair de la topologie de notre cluster
+    * Description clair de la topologie de notre cluster
     * Mise à jour de la topologie du cluster simplifié
     * Description des versions dans la custom resources
     * Génération automatique des certificats
