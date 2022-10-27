@@ -4,10 +4,6 @@
 
 ##==##
 
-![h-1000 center](./assets/images/ECK-schema.svg)
-
-##==##
-
 ## Ressource Elasticsearch
 
 <!-- .slide: class="with-code-dark" -->
@@ -63,3 +59,6 @@ spec:
 
 ```
 
+##==##
+
+![h-1000 center](./assets/images/ECK-schema.svg)

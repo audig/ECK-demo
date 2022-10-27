@@ -5,5 +5,5 @@
 - 🕵️ Je ne suis pas expert Elastic 🕵️
 - 💵 Je n'ai pas d'actions chez elastic 💵
 - 🍔 ELK, EFK, EBK, EK, EBLK venez comme vous êtes !!! 🍔
-- On parlera pas de SIEM, d'APM, des dashboardings etc... désolé
+- On ne parlera pas de SIEM, d'APM, de dashboardings etc...
  <!-- .element: class="list-fragment" -->

@@ -41,10 +41,10 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
   * ApmServer
   * etc...
 * Applique des rolling update intelligent sur la stack, sans downtine
-* Sécurisé par défaut avec ude l'authentification, Chiffrement TLS, Droit RBAC
+* Sécurisé par défaut avec de l'authentification, Chiffrement TLS, Droit RBAC
 * Connecte l'ensemble des composants sans configuration spécifique
 * Gestion fine des roles des noeuds et des versions à déployer
-* Supporte la plupart des providers majeur kubernetes
+* Supporte la plupart des providers cloud kubernetes
  <!-- .element: class="list-fragment" -->
 
 ##--##

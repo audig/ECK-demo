@@ -9,7 +9,7 @@
 * Déploiement de l'opérateur
 * Déploiement d'un cluster elasticsearch et kibana
 * Déploiement de filebeat
-* Déploiement d'un application démo
+* Déploiement d'une application démo
 * Récupération des logs de l'application démo
  <!-- .element: class="list-fragment" -->
 
