@@ -1,67 +1,87 @@
-# Deploy Stack
+# Steps de la demo
+
+## Deploy Stack
 
 Création du cluster avec kind & déploiement de l'operator eck & déploiement des ressources
 ```bash
-make all
+make create-cluster
 ```
 
-# Access Elasticsearch
+Déploiement operateur
+```bash
+make deploy-operator
+deploy-stack-elk:
+```
 
-Port forward different services
+Déploiement stack elk
+```bash
+make deploy-stack-elk
+```
 
+## Wait pod ready
+
+```bash
+kubectl get pods -n elastic-system --watch
+```
+
+## Port Forward elasticsearch & kibana
 ```bash
 kubectl port-forward svc/elasticsearch-logs-es-http -n elastic-system  9200:9200 & 
 kubectl port-forward svc/kibana-logs-kb-http -n elastic-system  5601:5601 & 
-kubectl port-forward deploy/nginx -n default 30080:30080 &
 ```
+
+## Récupération secret elastic
 
 Open browser to localhost:5601 to access kibana, and auth withou account elastic and password give by :
 ```bash
 kubectl get secret elasticsearch-logs-es-elastic-user -n elastic-system -o jsonpath='{.data.elastic}' | base64 --decode
 ```
-
-
-
-Port forward can be stoped
-
-```bash
-pkill -f "kubectl port-forward"
-```
-
-# Get elastic secret
-```bash
-kubectl get secret elasticsearch-logs-es-elastic-user -n elastic-system -o jsonpath='{.data.elastic}' | base64 --decode
-```
+# Terraform create index
 
 Upgrade elastic credentials in terraform/configuration.tf
-
-
-# Terraform create index
 
 Run terraform plan
 ```bash
 cd terraform
 terraform init
 terraform plan
+terraform apply
 ```
 
-# Deploy filebeat
+
+
+## Déploiement filebeat
 
 ```bash
 make deploy-filebeat
-
+kubectl get pods -n elastic-system --watch
 ```
 
-# Deploy sample app
+Création d'un dataview sur filebeat*
+
+## Deploy demo app
 
 ```bash
 make deploy-sample-app
+kubectl get pods -n default --watch
 ```
 
-No log returned by kibana
+## Port forward demo app
 
-# Annotate sample-app to collect logs
+```bash
+kubectl port-forward deploy/nginx -n default 30080:80 &
+```
+
+Faire quelques requete sur localhost:30080
+
+## No log returned by demo app in kibana
+
+Check dans kibana que le filtre app.name=nginx ne retourne rien
+
+## Deploy demo app annotated
 
 ```bash
 make deploy-sample-app-annotated
+kubectl get pods -n default --watch
+kubectl port-forward deploy/nginx -n default 30080:80 &
 ```

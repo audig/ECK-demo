@@ -30,7 +30,8 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
 
 ## Les principes d'ECK
 
-* Basé sur le pattern Kubernetes Operator
+* Alpha en 2019, en 2020 1.0.0, depuis 2021 release tous les 3 mois
+* Basé sur le pattern Kubernetes Operator, Opérateur officiel Elastic
 * Propose des CRDs pour décrire l'état souhaité de la stack elastic
 * Gère les ressources elastic:
   * Elasticsearch
@@ -39,17 +40,25 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
   * Beats
   * ApmServer
   * etc...
-* Applique des rolling update intelligent sur la stack
+* Applique des rolling update intelligent sur la stack, sans downtine
 * Sécurisé par défaut avec ude l'authentification, Chiffrement TLS, Droit RBAC
 * Connecte l'ensemble des composants sans configuration spécifique
 * Gestion fine des roles des noeuds et des versions à déployer
-
+* Supporte la plupart des providers majeur kubernetes
+ <!-- .element: class="list-fragment" -->
 
 ##--##
 
 ## Le pattern Operator
 
 Tout est API dans Kubernetes, cette api peut être étendu, par des CRDs
+
+<blockquote>
+<cite>
+Les opérateurs sont des extensions logicielles de Kubernetes qui utilisent des ressources personnalisées pour gérer les applications et leurs composants. Les opérateurs suivent les principes de Kubernetes, notamment la boucle de contrôle.
+</cite>
+</blockquote>
+
 
 Un operator est définit par:
 
@@ -69,4 +78,14 @@ Un operator est définit par:
 
 ##==##
 
-# TOTO
+## Est-ce que ECK pourrait être notre gars sûr
+
+* NON ![h-200](./assets/images/homer.png)
+ <!-- .element: class="list-fragment" -->
+
+<br><br><br>
+
+* OUI ![h-200](./assets/images/Etchebest.jpg) ![h-200](./assets/images/Gordon.webp)
+ <!-- .element: class="list-fragment" -->
+
+

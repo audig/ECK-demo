@@ -9,7 +9,11 @@ function schoolSlides() {
     "02_disclaimer.md",
     "03_recette-stack-collecte-logs-elastic.md",
     "04_galeres_de_cuisine.md",
-    "05-eck-route-michelin.md"
+    "05-eck-route-michelin.md",
+    "06_anatomie_ECK.md",
+    "07_demo_time.md",
+      "08_conclusion.md",
+      "09_questions.md"
   ];
 }
 

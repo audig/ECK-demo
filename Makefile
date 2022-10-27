@@ -1,8 +1,6 @@
-.PHONY: create-cluster delete-cluster clean terraform-init terraform-plan terraform-apply
+.PHONY: create-cluster delete-cluster clean terraform-init terraform-plan terraform-apply deploy-filebeat deploy-sample-app deploy-sample-app-annotated
 
 CLUSTER_NAME=eck-demo
-
-all: create-cluster deploy-eck
 
 default: create-cluster
 

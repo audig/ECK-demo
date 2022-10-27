@@ -12,7 +12,7 @@ provider "elasticstack" {
     endpoints = ["https://localhost:9200"]
     insecure = true
     username = "elastic"
-    password = "7GHy5R9harsdGD3149933qJA"
+    password = ""
   }
 }
 
