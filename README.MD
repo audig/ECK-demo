@@ -10,7 +10,6 @@ make create-cluster
 Déploiement operateur
 ```bash
 make deploy-operator
-deploy-stack-elk:
 ```
 
 Déploiement stack elk
