@@ -1,16 +1,28 @@
 .PHONY: create-cluster delete-cluster clean terraform-init terraform-plan terraform-apply deploy-filebeat deploy-sample-app deploy-sample-app-annotated
 
 CLUSTER_NAME=eck-demo
+ELASTIC_IMAGE=docker.elastic.co/elasticsearch/elasticsearch:8.4.1
+KIBANA_IMAGE=docker.elastic.co/kibana/kibana:8.4.1
+ELASTIC_OPERATOR_IMAGE=docker.elastic.co/eck/eck-operator:2.4.0
+FILEBEAT_IMAGE=docker.elastic.co/beats/filebeat:8.4.1
 
 default: create-cluster
 
 create-cluster:
 	kind create cluster -n ${CLUSTER_NAME}
 	sudo sysctl -w vm.max_map_count=262144
+	docker pull ${ELASTIC_IMAGE} && kind load docker-image -n ${CLUSTER_NAME} ${ELASTIC_IMAGE}
+	docker pull ${KIBANA_IMAGE} && kind load docker-image -n ${CLUSTER_NAME} ${KIBANA_IMAGE}
+	docker pull ${ELASTIC_OPERATOR_IMAGE} && kind load docker-image -n ${CLUSTER_NAME} ${ELASTIC_OPERATOR_IMAGE}
+	docker pull ${FILEBEAT_IMAGE} && kind load docker-image -n ${CLUSTER_NAME} ${FILEBEAT_IMAGE}
+
+stop-cluster:
+	kind create cluster -n ${CLUSTER_NAME}
+	sudo sysctl -w vm.max_map_count=262144
 
 deploy-operator:
 	helm repo add elastic https://helm.elastic.co
-	helm upgrade -i eck-operator elastic/eck-operator
+	helm upgrade -i eck-operator elastic/eck-operator -n elastic-system --create-namespace
 
 deploy-stack-elk:
 	kubectl apply -k manifests/elk-stack

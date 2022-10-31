@@ -81,6 +81,6 @@ Check dans kibana que le filtre app.name=nginx ne retourne rien
 
 ```bash
 make deploy-sample-app-annotated
-kubectl get pods -n default --watch
+kubectl get pods -n default
 kubectl port-forward deploy/nginx -n default 30080:80 &
 ```
