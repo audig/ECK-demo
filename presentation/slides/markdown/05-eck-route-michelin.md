@@ -1,24 +1,28 @@
 <!-- .slide: class="transition left sfeir-bg-1" -->
 
-# ECK: en route vers l'étoile michelin
+# ECK : en route vers l'étoile michelin
 
 ##==##
+<!-- .slide: class="two-column" -->
 
-## Est-ce que ECK peut nous faire passer de ça: 
+<br>
 
+* Est-ce que ECK peut nous faire passer de ça : 
 ![h-800 center](./assets/images/homer-cooking.gif)
 
-##==##
+##--##
 
-## À ça: 
+<br>  
 
+* À ça:
 ![h-800 center](./assets/images/cooking-pro.gif)
+<!-- .element: class="list-fragment" -->
 
 ##==##
 
 <!-- .slide: class="quote-slide" -->
 
-## La promesse d'ECK:
+## La promesse d'ECK :
 
 <blockquote>
 <cite>
@@ -26,24 +30,21 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
 </cite>
 </blockquote>
 
+[Source](https://www.elastic.co/fr/elastic-cloud-kubernetes)
+<!-- .element: class="credits" -->
+
 ##==##
 
 ## Les principes d'ECK
 
 * Alpha en 2019, en 2020 1.0.0, depuis 2021 release tous les 3 mois
-* Basé sur le pattern Kubernetes Operator, Opérateur officiel Elastic
+* Basé sur le pattern Kubernetes Operator, opérateur officiel Elastic
 * Propose des CRDs pour décrire l'état souhaité de la stack elastic
-* Gère les ressources elastic:
-  * Elasticsearch
-  * Kibana
-  * Logstash
-  * Beats
-  * ApmServer
-  * etc...
+* Gère les ressources elastic: Elasticsearch, Kibana, Logstash, Beats ...
 * Applique des rolling update intelligent sur la stack, sans downtine
 * Sécurisé par défaut avec de l'authentification, Chiffrement TLS, Droit RBAC
 * Connecte l'ensemble des composants sans configuration spécifique
-* Gestion fine des roles des noeuds et des versions à déployer
+* Gestion fine des roles des nœuds et des versions à déployer
 * Supporte la plupart des providers cloud kubernetes
  <!-- .element: class="list-fragment" -->
 
@@ -59,13 +60,14 @@ Les opérateurs sont des extensions logicielles de Kubernetes qui utilisent des 
 </cite>
 </blockquote>
 
+##--##
 
-Un operator est définit par:
+Un operator est défini par :
 
 * Des <b>Custom Resources Definition</b> (CRDs) définissant nos objets kubernetes spécialisé
-* Des <b>Custom Resouces</b> (CR) qui sont des instance des CRDs
+* Des <b>Custom Resources</b> (CR) qui sont des instance des CRDs
 * Un <b>controller</b> qui analyse les CRs déployé sur le cluster et qui s'assure que l'état déclaré soit bien l'état en cours
-* Le controller peut avoir plus ou moins d'intelligence pour gérer:
+* Le controller peut avoir plus ou moins d'intelligence pour gérer :
     * Les upgrades
     * La mise en réseau dans un cluster
     * Le nettoyage des ressources
@@ -75,6 +77,8 @@ Un operator est définit par:
 ##--##
 
 ![h-1000 center](./assets/images/k8s-operator.webp)
+[Source](https://www.cncf.io/blog/2022/06/15/kubernetes-operators-what-are-they-some-examples/)
+<!-- .element: class="credits" -->
 
 ##==##
 

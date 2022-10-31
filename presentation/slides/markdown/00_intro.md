@@ -11,7 +11,7 @@
 
 1. Recette d'une bonne stack de collecte de logs elastic
 2. Les galères en cuisine
-3. ECK: en route vers l'étoile michelin
+3. ECK : en route vers l'étoile michelin
 4. Anatomie du déploiement d'ECK
 5. Demo Time
 6. Conclusion
