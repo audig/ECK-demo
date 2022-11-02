@@ -80,16 +80,3 @@ Un operator est défini par :
 [Source](https://www.cncf.io/blog/2022/06/15/kubernetes-operators-what-are-they-some-examples/)
 <!-- .element: class="credits" -->
 
-##==##
-
-## Est-ce que ECK pourrait être notre gars sûr
-
-* NON ![h-200](./assets/images/homer.png)
- <!-- .element: class="list-fragment" -->
-
-<br><br><br>
-
-* OUI ![h-200](./assets/images/Etchebest.jpg) ![h-200](./assets/images/Gordon.webp)
- <!-- .element: class="list-fragment" -->
-
-
