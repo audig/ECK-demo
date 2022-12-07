@@ -6,7 +6,7 @@
 
 ## Ressource Elasticsearch
 
-<!-- .slide: class="with-code-dark" -->
+<!-- .slide: class="with-code-white" -->
 
 ```yaml [1-2|6|7-10|12,15,18,21|13,19]
 apiVersion: elasticsearch.k8s.elastic.co/v1
@@ -31,10 +31,11 @@ spec:
       config:
         node.roles: [ "data","ingest" ]
 ```
+<!-- .element: class="h-600"-->
 
 ##==##
 
-<!-- .slide: class="with-code-dark" -->
+<!-- .slide: class="with-code-white" -->
 
 ## Ressource Kibana
 
@@ -58,6 +59,7 @@ spec:
               cpu: 1
 
 ```
+<!-- .element: class="h-600"-->
 
 ##==##
 

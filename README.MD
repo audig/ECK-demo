@@ -9,12 +9,14 @@ make create-cluster
 
 Déploiement operateur
 ```bash
-make deploy-operator
+helm repo add elastic https://helm.elastic.co
+helm upgrade -i 01-deploy-eck-operator elastic/01-deploy-eck-operator -n elastic-system --create-namespace
 ```
 
 Déploiement stack elk
 ```bash
-make deploy-stack-elk
+tree manifests/elk-stack
+kubectl apply -k manifests/elk-stack
 ```
 
 ## Wait pod ready
@@ -68,19 +70,21 @@ kubectl get pods -n default --watch
 ## Port forward demo app
 
 ```bash
-kubectl port-forward deploy/nginx -n default 30080:80 &
+kubectl port-forward deploy/nginx-no-log -n default 30080:80 &
+kubectl port-forward deploy/nginx-default-log -n default 30081:80 &
+kubectl port-forward deploy/nginx-access-log -n default 30082:80 &
 ```
 
-Faire quelques requete sur localhost:30080
-
-## No log returned by demo app in kibana
-
-Check dans kibana que le filtre app.name=nginx ne retourne rien
-
-## Deploy demo app annotated
-
+Faire quelques requete sur les pods nginx
 ```bash
-make deploy-sample-app-annotated
-kubectl get pods -n default
-kubectl port-forward deploy/nginx -n default 30080:80 &
+for i in {1..10}
+do 
+  curl localhost:30080
+  curl localhost:30081
+  curl localhost:30082
+done
 ```
+
+## Consultation des logs dans kibana
+
+

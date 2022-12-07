@@ -1,4 +1,4 @@
-company_filebeat_indices_admin:
+filebeat_indices_admin:
   cluster: [ 'monitor' ]
   indices:
     - names: [ '*' ]

@@ -1,9 +1,3 @@
-<!-- .slide: class="transition left sfeir-bg-1" -->
-
-# Conclusion
-
-##==##
-
 ## Conclusion
 
 * Est-ce que le déploiement d'un stack a été simple ?

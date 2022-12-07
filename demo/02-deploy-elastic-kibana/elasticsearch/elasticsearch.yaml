@@ -7,9 +7,9 @@ spec:
   version: 8.4.1
   auth:
     fileRealm:
-      - secretName: company-elasticsearch-users-roles
+      - secretName: custom-elasticsearch-users-roles
     roles:
-      - secretName: company-elasticsearch-roles
+      - secretName: custom-elasticsearch-roles
   monitoring:
     metrics:
       elasticsearchRefs:
@@ -28,7 +28,7 @@ spec:
             - name: elasticsearch
               resources:
                 limits:
-                  memory: 1Gi
+                  memory: 1024Mi
                   cpu: 1
       volumeClaimTemplates:
         - metadata:
@@ -41,7 +41,7 @@ spec:
                 storage: 10Gi
 
     - name: data-nodes
-      count: 2
+      count: 1
       config:
         node.roles: [ "data","ingest" ]
       podTemplate:
@@ -50,7 +50,7 @@ spec:
             - name: elasticsearch
               resources:
                 limits:
-                  memory: 1Gi
+                  memory: 1024Mi
                   cpu: 1
       volumeClaimTemplates:
         - metadata:

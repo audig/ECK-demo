@@ -3,19 +3,19 @@ kind: Kustomization
 
 namespace: elastic-system
 
+resources:
+  - elasticsearch.yaml
+
+
 generatorOptions:
   disableNameSuffixHash: true
 
 secretGenerator:
 #https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-users-and-roles.html#k8s_file_realm
-  - name: company-elasticsearch-users-roles
+  - name: custom-elasticsearch-users-roles
     files:
       - elasticsearch_security/users_roles
-  - name: company-elasticsearch-roles
+  - name: custom-elasticsearch-roles
     files:
       - elasticsearch_security/roles.yml
-resources:
-  - namespace.yaml
-  - elasticsearch.yaml
-  - kibana.yaml
 

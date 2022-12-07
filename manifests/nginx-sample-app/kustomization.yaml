@@ -1,4 +1,6 @@
 namespace: default
 
 resources:
-  - deployment.yaml
+  - deployment-no-log.yaml
+  - deployment-access-log.yaml
+  - deployment-default-log.yaml

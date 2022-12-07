@@ -15,10 +15,9 @@ create-cluster:
 	docker pull ${KIBANA_IMAGE} && kind load docker-image -n ${CLUSTER_NAME} ${KIBANA_IMAGE}
 	docker pull ${ELASTIC_OPERATOR_IMAGE} && kind load docker-image -n ${CLUSTER_NAME} ${ELASTIC_OPERATOR_IMAGE}
 	docker pull ${FILEBEAT_IMAGE} && kind load docker-image -n ${CLUSTER_NAME} ${FILEBEAT_IMAGE}
-
-stop-cluster:
-	kind create cluster -n ${CLUSTER_NAME}
-	sudo sysctl -w vm.max_map_count=262144
+	helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+	helm repo update
+	helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
 
 deploy-operator:
 	helm repo add elastic https://helm.elastic.co
@@ -38,8 +37,6 @@ deploy-filebeat:
 deploy-sample-app:
 	kubectl apply -k manifests/nginx-sample-app
 
-deploy-sample-app-annotated:
-	kubectl apply -k manifests/nginx-sample-app-annotated
 
 
 clean:

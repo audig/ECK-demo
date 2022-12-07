@@ -58,7 +58,7 @@ spec:
           fields: [ "message" ]
           target: "message_fields"
 
-    output.elasticsearch.index: "company-filebeat-%{[data_stream.type]}-%{[data_stream.category]}-%{[environment.type]}"
+    output.elasticsearch.index: "filebeat-%{[data_stream.type]}-%{[data_stream.category]}-%{[environment.type]}"
   daemonSet:
     podTemplate:
       metadata:

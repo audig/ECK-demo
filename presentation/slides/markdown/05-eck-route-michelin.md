@@ -1,22 +1,13 @@
-<!-- .slide: class="transition left sfeir-bg-1" -->
-
-# ECK : en route vers l'étoile michelin
-
-##==##
 <!-- .slide: class="two-column" -->
 
-<br>
 
-* Est-ce que ECK peut nous faire passer de ça : 
+Est-ce que ECK peut nous faire passer de ça :<br><br>
 ![h-800 center](./assets/images/homer-cooking.gif)
 
 ##--##
 
-<br>  
-
-* À ça:
+À ça:<br><br>
 ![h-800 center](./assets/images/cooking-pro.gif)
-<!-- .element: class="list-fragment" -->
 
 ##==##
 
@@ -37,7 +28,8 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
 
 ## Les principes d'ECK
 
-* Alpha en 2019, en 2020 1.0.0, depuis 2021 release tous les 3 mois
+#TODO
+
 * Basé sur le pattern Kubernetes Operator, opérateur officiel Elastic
 * Propose des CRDs pour décrire l'état souhaité de la stack elastic
 * Gère les ressources elastic: Elasticsearch, Kibana, Logstash, Beats ...
@@ -48,6 +40,15 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
 * Supporte la plupart des providers cloud kubernetes
  <!-- .element: class="list-fragment" -->
 
+Notes:
+- Alpha en 2019, en 2020 1.0.0, depuis 2021 release tous les 3 mois
+- La compléxité des upgrades
+- Générer les certificats internes à elasticsearch
+- S'assurer que l'ensemble de la stack est au même niveau de version
+- Décrire la configuration de chaque type de nœud
+- Distribuer les certificats pour les clients (kibana, filebeat, logstash)
+- Gérer les roles et privilèges des différents clients
+- Gérer les mapping, ILM etc...
 ##--##
 
 ## Le pattern Operator

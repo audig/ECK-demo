@@ -1,9 +1,3 @@
-<!-- .slide: class="transition left sfeir-bg-1" -->
-
-# Les ingrédients d'une bonne stack de logs
-
-##==##
-
 ## Les ingrédients d'une bonne stack de logs
 
 
@@ -14,7 +8,7 @@
 - Selon vos gôuts, rajouter un moteur de transformation de logs, ou du queuing
   <br><center>🌶️ Logstash 🌶️</center><br>
 - Et pour pimper le tout, et en mettre plein les mirettes, de quoi observer les logs
-  <br><center>🍒 Kibana 🍒</center><br>
+  <br><center>🌿 Kibana 🌿</center><br>
  <!-- .element: class="list-fragment" -->
 ##==##
  
