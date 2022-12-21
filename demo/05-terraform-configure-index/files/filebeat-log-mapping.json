@@ -1,0 +1,126 @@
+{
+  "dynamic_templates": [
+    {
+      "kubernetes.namespace": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "kubernetes.namespace"
+      }
+    },
+    {
+      "kubernetes.node.name": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "kubernetes.node.name"
+      }
+    },
+    {
+      "kubernetes.pod.name": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "kubernetes.pod.name"
+      }
+    },
+    {
+      "data_stream.category": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "data_stream.category"
+      }
+    },
+    {
+      "data_stream.type": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "data_stream.type"
+      }
+    },
+    {
+      "environment.name": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "environment.name"
+      }
+    },
+    {
+      "environment.type": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "environment.type"
+      }
+    },
+    {
+      "host.name": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "host.name"
+      }
+    },
+    {
+      "kubernetes.cluster_name": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "kubernetes.cluster_name"
+      }
+    },
+    {
+      "kubernetes.container.name": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "kubernetes.container.name"
+      }
+    },
+    {
+      "message_fields*": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "message_fields*"
+      }
+    },
+    {
+      "app_stack": {
+        "mapping": {
+          "type": "keyword"
+        },
+        "match_mapping_type": "string",
+        "path_match": "app_stack"
+      }
+    },
+    {
+      "strings": {
+        "match_mapping_type": "string",
+        "mapping": {
+          "type": "text",
+          "fields": {
+            "raw": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        }
+      }
+    }
+  ]
+}

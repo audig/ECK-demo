@@ -1,0 +1,6 @@
+#Use to deploy all kubernetes resources
+resources:
+  - 02-deploy-elastic-kibana/elasticsearch
+  - 02-deploy-elastic-kibana/kibana/kibana.yaml
+  - 03-deploy-filebeat
+  - 06-deploy-sample-app

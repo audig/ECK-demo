@@ -1,0 +1,5 @@
+resources:
+  - deployment-no-log.yaml
+  - deployment-access-log.yaml
+  - deployment-default-log.yaml
+  - service.yaml

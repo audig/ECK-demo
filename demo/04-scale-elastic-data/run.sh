@@ -18,9 +18,9 @@ echo
 echo "🔍 Let's inspect our cluster status 🔍"
 pe "kubectl port-forward svc/elasticsearch-logs-es-http 9200:9200  > /dev/null 2>&1 &"
 echo
-pe "ELASTIC_PASSWORD=\$(kubectl get secret elasticsearch-logs-es-elastic-user -n elastic-system -o jsonpath='{.data.elastic}' | base64 --decode)"
+pe "ELASTICSEARCH_PASSWORD=\$(kubectl get secret elasticsearch-logs-es-elastic-user -n elastic-system -o jsonpath='{.data.elastic}' | base64 --decode)"
 echo
-pe "curl -s -k -u elastic:\$ELASTIC_PASSWORD https://localhost:9200/_cluster/health | jq"
+pe "curl -s -k -u elastic:\$ELASTICSEARCH_PASSWORD https://localhost:9200/_cluster/health | jq"
 
 wait 
 clear

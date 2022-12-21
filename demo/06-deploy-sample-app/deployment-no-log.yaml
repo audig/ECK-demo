@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-no-log
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+      log: no
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+        log: no
+    spec:
+      containers:
+        - name: nginx-no-log
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
