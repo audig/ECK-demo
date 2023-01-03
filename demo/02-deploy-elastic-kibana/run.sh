@@ -16,6 +16,9 @@ pe "kubectl apply -k $deploy_dir"
 echo
 pe "watch kubectl get pods"
 echo
+pe "kubectl get elasticsearch"
+echo
+pe "${__dir}/wait_elastic_ready.sh elasticsearch-logs"
 echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait

@@ -2,11 +2,13 @@
 
 CLUSTER_NAME=eck-demo
 ELASTIC_NS=elastic-system
+ELASTIC_SECRET_NAME=elasticsearch-logs-es-elastic-user
 ELASTIC_IMAGE=docker.elastic.co/elasticsearch/elasticsearch:8.4.1
 KIBANA_IMAGE=docker.elastic.co/kibana/kibana:8.4.1
 ELASTIC_OPERATOR_IMAGE=docker.elastic.co/eck/eck-operator:2.4.0
 FILEBEAT_IMAGE=docker.elastic.co/beats/filebeat:8.4.1
 TERRAFORM_LOCATION=demo/05-terraform-configure-index
+
 
 default: create-cluster
 
@@ -28,13 +30,15 @@ deploy-operator:
 
 deploy-stack-elk:
 	kubectl apply -k demo
+	demo/02-deploy-elastic-kibana/wait_elastic_ready.sh elasticsearch-logs
 
 deploy: deploy-operator deploy-stack-elk
+
 
 index-config:
 	kubectl config set-context kind-$(CLUSTER_NAME) --namespace=$(ELASTIC_NS)
 	kubectl port-forward svc/elasticsearch-logs-es-http 9200:9200  > /dev/null 2>&1 &
-	$(eval ELASTICSEARCH_PASSWORD=$(shell kubectl get secret elasticsearch-logs-es-elastic-user -n elastic-system -o jsonpath='{.data.elastic}' | base64 --decode))
+	$(eval ELASTICSEARCH_PASSWORD=$(shell kubectl get secret $(ELASTIC_SECRET_NAME) -o jsonpath='{.data.elastic}' | base64 --decode))
 	cd $(TERRAFORM_LOCATION) && \
  		terraform init && \
  		ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD} \
@@ -43,7 +47,7 @@ index-config:
 test:
 	ab -n 500 -c 20 http://localhost:30000/
 
-all: create-cluster deploy index-config test
+all:  create-cluster deploy index-config test
 
 clean:
 	kind delete cluster -n ${CLUSTER_NAME}
