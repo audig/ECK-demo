@@ -10,8 +10,8 @@ terraform {
 provider "elasticstack" {
   elasticsearch {
     endpoints = ["https://localhost:9200"]
-    insecure = true
-    username = "elastic"
+    insecure  = true
+    username  = "elastic"
   }
 }
 

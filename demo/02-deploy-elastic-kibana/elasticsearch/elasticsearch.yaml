@@ -1,9 +1,9 @@
+---
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
   name: elasticsearch-logs
 spec:
-
   version: 8.4.1
   auth:
     fileRealm:
@@ -21,7 +21,7 @@ spec:
     - name: master-nodes
       count: 1
       config:
-        node.roles: [ "master" ]
+        node.roles: ["master"]
       podTemplate:
         spec:
           containers:
@@ -43,7 +43,7 @@ spec:
     - name: data-nodes
       count: 1
       config:
-        node.roles: [ "data","ingest" ]
+        node.roles: ["data", "ingest"]
       podTemplate:
         spec:
           containers:
