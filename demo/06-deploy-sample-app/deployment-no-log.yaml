@@ -7,13 +7,13 @@ spec:
   selector:
     matchLabels:
       app: nginx
-      log: false
+      log: "false"
   replicas: 1  # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
         app: nginx
-        log: false
+        log: "false"
     spec:
       containers:
         - name: nginx-no-log
