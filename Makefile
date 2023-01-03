@@ -45,6 +45,7 @@ index-config:
 		terraform apply --auto-approve
 
 test:
+	kubectl port-forward svc/kibana-logs-kb-http 5601:5601  > /dev/null 2>&1 &
 	ab -n 500 -c 20 http://localhost:30000/
 
 all:  create-cluster deploy index-config test
