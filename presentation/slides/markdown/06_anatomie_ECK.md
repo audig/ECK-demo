@@ -63,4 +63,32 @@ spec:
 
 ##==##
 
-![h-1000 center](./assets/images/ECK-schema.svg)
+![h-1000 center](./assets/images/schema-elastic/1.png)
+
+##==##
+
+![h-1000 center](./assets/images/schema-elastic/2.png)
+
+##==##
+
+![h-1000 center](./assets/images/schema-elastic/3.png)
+
+##==##
+
+![h-1000 center](./assets/images/schema-elastic/4.png)
+
+##==##
+
+![h-1000 center](./assets/images/schema-elastic/5.png)
+
+##==##
+
+![h-1000 center](./assets/images/schema-elastic/6.png)
+
+##==##
+
+![h-1000 center](./assets/images/schema-elastic/7.png)
+
+##==##
+
+![h-1000 center](./assets/images/schema-elastic/8.png)

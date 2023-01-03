@@ -4,7 +4,7 @@
 * Déploiement d'un cluster elasticsearch et kibana
 * Déploiement de filebeat
 * Déploiement d'applications démo
-* Récupération des logs de l'application démo
+* Consultation des logs des applications démo
  <!-- .element: class="list-fragment" -->
 
 
