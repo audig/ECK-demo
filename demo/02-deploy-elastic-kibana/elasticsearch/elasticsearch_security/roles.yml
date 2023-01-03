@@ -1,5 +1,6 @@
+---
 filebeat_indices_admin:
-  cluster: [ 'monitor' ]
+  cluster: ['monitor']
   indices:
-    - names: [ '*' ]
-      privileges: [ 'all' ]
+    - names: ['*']
+      privileges: ['all']

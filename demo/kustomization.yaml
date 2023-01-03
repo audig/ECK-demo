@@ -1,4 +1,5 @@
-#Use to deploy all kubernetes resources
+---
+# Use to deploy all kubernetes resources
 resources:
   - 02-deploy-elastic-kibana/elasticsearch
   - 02-deploy-elastic-kibana/kibana/kibana.yaml

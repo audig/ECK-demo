@@ -1,3 +1,4 @@
+---
 resources:
   - deployment-no-log.yaml
   - deployment-access-log.yaml
