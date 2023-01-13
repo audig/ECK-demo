@@ -7,7 +7,7 @@
 elasticsearch_name=$1
 
 # Set a timeout in seconds
-timeout=300
+timeout=${2:-300}
 
 echo "Waiting for Elasticsearch $elasticsearch_name to be in health yellow or green..."
 
@@ -35,4 +35,5 @@ if [[ "$elasticsearch_healthy" = true ]]; then
   echo "Elasticsearch $elasticsearch_name is in $health."
 else
   echo "Timeout reached. Elasticsearch $elasticsearch_name is not in health yellow or green."
+  exit 1
 fi
