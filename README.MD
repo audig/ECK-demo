@@ -1,24 +1,33 @@
-# Steps de la demo
+# How to run the demo
 
-## Deploy Stack
+# Requirements
 
-Création du cluster avec kind & déploiement de l'operator eck & déploiement des ressources
+This project have been tested on an ubuntu distro.
+
+You need at least all this binaries:
+
+* [Taskfile](https://taskfile.dev/installation/) to run all the steps
+* Kind to create a local kubernetes cluster
+* Kubectl to apply resources to kind
+* Terraform to create index mappings in elasticsearch
+* Helm to deploy eck operator
+* Apache bench (ab) to generate load on nginx to get some logs in elasticsearch
+
+# Commands to run the deployment
+
+At the root of the project run :
+
 ```bash
-make create-cluster
+task all
 ```
 
-Déploiement operateur
+You can clean your environement with
+
 ```bash
-helm repo add elastic https://helm.elastic.co
-helm upgrade -i 01-deploy-eck-operator elastic/01-deploy-eck-operator -n elastic-system --create-namespace
+task clean
 ```
 
-Déploiement stack elk
-```bash
-make deploy
-```
-
-# Commandes utiles
+# Helpful commands
 
 ## Port Forward elasticsearch & kibana
 ```bash
