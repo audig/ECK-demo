@@ -18,7 +18,6 @@ resource "elasticstack_elasticsearch_index_lifecycle" "ilm-filebeat-log-middlewa
       max_age                = "1h"
       max_primary_shard_size = "20gb"
     }
-    readonly {}
   }
   #The index is no longer being updated but is still being queried.
   warm {
