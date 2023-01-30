@@ -1,13 +1,15 @@
 <!-- .slide: class="two-column" -->
 
 
-Est-ce que ECK peut nous faire passer de ça :<br><br>
+Est-ce que ECK peut nous faire passer de ça<br><br>
 ![h-800 center](./assets/images/homer-cooking.gif)
+<!-- .element: class="fragment" -->
 
 ##--##
 
-À ça:<br><br>
+À ça<br><br>
 ![h-800 center](./assets/images/cooking-pro.gif)
+<!-- .element: class="fragment" -->
 
 ##==##
 
@@ -28,21 +30,23 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
 
 ## Les principes d'ECK
 
-#TODO
-
-* Basé sur le pattern Kubernetes Operator, opérateur officiel Elastic
-* Propose des CRDs pour décrire l'état souhaité de la stack elastic
-* Gère les ressources elastic: Elasticsearch, Kibana, Logstash, Beats ...
-* Applique des rolling update intelligent sur la stack, sans downtine
-* Sécurisé par défaut avec de l'authentification, Chiffrement TLS, Droit RBAC
+* Déploiement dans Kubernetes, avec le pattern Kubernetes Operator
+* CRDs: Elasticsearch, Kibana, Logstash, Beats ...
+* Smart Rolling Update
+* Sécurisé: authentification, chiffrement TLS, droits RBAC
+* Service Discovery
 * Connecte l'ensemble des composants sans configuration spécifique
 * Gestion fine des roles des nœuds et des versions à déployer
-* Supporte la plupart des providers cloud kubernetes
+
  <!-- .element: class="list-fragment" -->
 
 Notes:
 - Alpha en 2019, en 2020 1.0.0, depuis 2021 release tous les 3 mois
-- La compléxité des upgrades
+- Basé sur le pattern Kubernetes Operator, opérateur officiel Elastic
+- Propose des CRDs pour décrire l'état souhaité de la stack elastic
+- Gère les ressources elastic: Elasticsearch, Kibana, Logstash, Beats ...
+- Applique des rolling update intelligent sur la stack, sans downtine
+- Sécurisé par défaut avec de l'authentification, Chiffrement TLS, Droit RBAC
 - Générer les certificats internes à elasticsearch
 - S'assurer que l'ensemble de la stack est au même niveau de version
 - Décrire la configuration de chaque type de nœud
@@ -65,9 +69,9 @@ Les opérateurs sont des extensions logicielles de Kubernetes qui utilisent des 
 
 Un operator est défini par :
 
-* Des <b>Custom Resources Definition</b> (CRDs) définissant nos objets kubernetes spécialisé
-* Des <b>Custom Resources</b> (CR) qui sont des instance des CRDs
-* Un <b>controller</b> qui analyse les CRs déployé sur le cluster et qui s'assure que l'état déclaré soit bien l'état en cours
+* Des <b>Custom Resources Definition</b> (CRDs) définissant nos objets kubernetes spécialisés
+* Des <b>Custom Resources</b> (CR) qui sont des instances des CRDs
+* Un <b>controller</b> qui analyse les CRs déployées sur le cluster et qui s'assure que l'état déclaré soit bien l'état en cours
 * Le controller peut avoir plus ou moins d'intelligence pour gérer :
     * Les upgrades
     * La mise en réseau dans un cluster

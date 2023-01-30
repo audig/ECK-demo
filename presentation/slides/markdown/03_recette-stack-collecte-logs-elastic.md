@@ -12,19 +12,27 @@
  <!-- .element: class="list-fragment" -->
 ##==##
  
-## Qualité de ce plat
-#TODO
-### En fonction du nombre d'étoiles que vous visez, vous devez vous adapter
+## Qualité de la recette
+
 <br><br>
 ⭐ Un elasticsearch, en plain http, avec l'ensemble des roles elasticsearch
-
+<!-- .element: class="fragment" -->
 <br>
 
 ⭐⭐ Un cluster elasticsearch (minimum: 3), avec l'ensemble des rôles elasticsearch
-
+<!-- .element: class="fragment" -->
 <br>
 
 ⭐⭐⭐ Des sets de nodes pour chacun des roles elasticsearch (data, master, ingest, coordinator), avec des replicas pour chaque rôle, configuré en MTLS
+<!-- .element: class="fragment" -->
 
-
+Notes:
+- Dans kubernetes, maintenir des manifest "raw", ou un kustomize long comme le bras, ou un méta chart dépendant des charts officiels elastic
+- La compléxité des upgrades
+- Générer les certificats internes à elasticsearch
+- S'assurer que l'ensemble de la stack est au même niveau de version
+- Décrire la configuration de chaque type de nœud
+- Distribuer les certificats pour les clients (kibana, filebeat, logstash)
+- Gérer les roles et privilèges des différents clients
+- Gérer les mapping, ILM etc...
 

@@ -1,13 +1,21 @@
 ## Conclusion
 
-* Est-ce que le déploiement d'un stack a été simple ?
-    * Topologie cluster Elastic As Code
-    * Helpers certificats, access management, connection kibana
-    * Autodiscover de la configuration de logging
+* 🤔Est-ce que le déploiement d'un stack a été simple ?🤔
+  * Topologie cluster Elastic As Code
+  * Connectivité de filebeat à Elasticsearch simplifié (Auth, TLS)
+  * Autodiscover de la configuration de logging
+  * Customisation fine du workload
+  
 
-
- <!-- .element: class="list-fragment" -->
-
+* ⚠️ Ne résous pas tous les problèmes ⚠️
+<!-- .element: class="list-fragment" -->
+  * StafulSet dans Kubernetes
+  * Quel type de stockage utiliser ?
+  * Déploiement du collecteur de logs sur un cluster applicatif déconseillé
+  * Norme de nommage et de cycle de vie des indexs
+  * Gestion des indexs, HOT, WARM, COLD ...
+  * Footprint Mémoire importante
+<!-- .element: class="list-fragment" -->
 ##==##
 
 ## Outils utilisés pour la démo
@@ -19,7 +27,7 @@
 * Déploiement Workload: [Helm](https://helm.sh/) & [Kustomize](https://kustomize.io/)
 * Configuration index elastic: [Terraform](https://www.terraform.io/) & [Terraform provider elasticstack](https://github.com/elastic/terraform-provider-elasticstack) 
 * Generation de load http: [Apache Bench](https://httpd.apache.org/docs/2.4/fr/programs/ab.html)
-* Automatisation déploiement démo: [Make](https://www.gnu.org/software/make/)
+* Automatisation déploiement démo: [Taskfile](https://taskfile.dev/)
 * Validation de la syntaxe scripts et yaml: [Shellcheck](https://www.shellcheck.net/) & [Yamllint](https://yamllint.readthedocs.io/en/stable/)
 * Autocomplétion & validation resources Kubernetes: [IntelliJ Kubernetes Plugins](https://plugins.jetbrains.com/plugin/10485-kubernetes) _(Use API schema from the active cluster)_
 

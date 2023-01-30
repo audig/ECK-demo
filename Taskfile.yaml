@@ -7,6 +7,7 @@ output: prefixed
 vars:
   CLUSTER_NAME: eck-demo
   ELASTIC_NS: elastic-system
+  KUBECTL_CONTEXT: kind-{{.CLUSTER_NAME}}
   ELASTIC_SECRET_NAME: elasticsearch-logs-es-elastic-user
   ELASTIC_IMAGE: docker.elastic.co/elasticsearch/elasticsearch:8.4.1
   KIBANA_IMAGE: docker.elastic.co/kibana/kibana:8.4.1
@@ -35,6 +36,18 @@ tasks:
       - sh: which ab
         msg: Apache Bench must be install -> sudo apt-get install -y apache2-utils
 
+  set-context:
+    status:
+      - kubectl config current-context | grep {{.KUBECTL_CONTEXT}}
+      - kubectl config view --minify -o jsonpath='{..namespace}' | grep {{.ELASTIC_NS}}
+      - kubectl get pods
+    preconditions:
+      - sh: kubectl get pods -n {{.ELASTIC_NS}}
+        msg: Cannot connect to {{.CLUSTER_NS}} on namespace {{.ELASTIC_NS}}
+    cmds:
+      - kubectl config set-context {{.KUBECTL_CONTEXT}} --namespace={{.ELASTIC_NS}}
+      - kubectl config use-context {{.KUBECTL_CONTEXT}}
+
   create-cluster:
     deps:
       - check-requirements
@@ -47,26 +60,15 @@ tasks:
       - docker pull {{.KIBANA_IMAGE}} && kind load docker-image -n {{.CLUSTER_NAME}} {{.KIBANA_IMAGE}}
       - docker pull {{.ELASTIC_OPERATOR_IMAGE}} && kind load docker-image -n {{.CLUSTER_NAME}} {{.ELASTIC_OPERATOR_IMAGE}}
       - docker pull {{.FILEBEAT_IMAGE}} && kind load docker-image -n {{.CLUSTER_NAME}} {{.FILEBEAT_IMAGE}}
+      - task: set-context
       - helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
       - helm repo update
       - helm upgrade --install --set args={--kubelet-insecure-tls} metrics-server metrics-server/metrics-server --namespace kube-system
 
-  set-context:
-    deps:
-      - create-cluster
-    status:
-      - kubectl config current-context | grep {{.CLUSTER_NAME}}
-      - kubectl config view --minify -o jsonpath='{..namespace}' | grep {{.ELASTIC_NS}}
-      - kubectl get pods
-    preconditions:
-      - sh: kubectl get pods -n {{.ELASTIC_NS}}
-        msg: Cannot connect to {{.CLUSTER_NS}} on namespace {{.ELASTIC_NS}}
-    cmds:
-      - kubectl config set-context kind-{{.CLUSTER_NAME}} --namespace={{.ELASTIC_NS}}
 
   deploy-operator:
     deps:
-      - set-context
+      - create-cluster
     status:
       - "helm status eck-operator | grep 'STATUS: deployed'"
     preconditions:
@@ -82,6 +84,10 @@ tasks:
     status:
       - 02-deploy-elastic-kibana/wait_elastic_ready.sh elasticsearch-logs 5
     dir: demo
+    sources:
+      - ./kustomization.yaml
+      - ./02-deploy-elastic-kibana/**
+      - ./03-deploy-filebeat/**
     cmds:
       - kubectl apply -k .
       - 02-deploy-elastic-kibana/wait_elastic_ready.sh elasticsearch-logs
@@ -92,7 +98,7 @@ tasks:
       - curl https://localhost:5601
     cmds:
       - kubectl port-forward svc/elasticsearch-logs-es-http 9200:9200 > /dev/null 2>&1 &
-      - kubectl port-forward svc/elasticsearch-logs-es-http 5601:5601 > /dev/null 2>&1 &
+      - kubectl port-forward svc/kibana-logs-kb-http 5601:5601 > /dev/null 2>&1 &
 
   index-config:
     deps:
@@ -100,6 +106,8 @@ tasks:
     dir: demo/05-terraform-configure-index
     status:
       - terraform plan | grep "No changes"
+    sources:
+      - ./**
     env:
       ELASTICSEARCH_PASSWORD:
         sh: kubectl get secret {{.ELASTIC_SECRET_NAME}} -o jsonpath='{.data.elastic}' | base64 --decode
@@ -112,7 +120,19 @@ tasks:
     deps:
       - index-config
     cmds:
-      - ab -n 500 -c 20 http://localhost:30000/
+      - task: port-forward
+      - ab -n 1000000 -c 20 http://localhost:30000/
+
+  terraform-destroy:
+      dir: demo/05-terraform-configure-index
+      deps:
+          - index-config
+      vars:
+        ELASTICSEARCH_PASSWORD:
+          sh: kubectl get secret {{.ELASTIC_SECRET_NAME}} -o jsonpath='{.data.elastic}' | base64 --decode
+      cmds:
+          - task: port-forward
+          - ELASTICSEARCH_PASSWORD={{.ELASTICSEARCH_PASSWORD}} terraform destroy --auto-approve
 
   clean:
     dir: demo/05-terraform-configure-index
