@@ -19,7 +19,6 @@ echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait
 switchEditorIfNeeded
-runIde
 
 wait
 
@@ -35,5 +34,6 @@ echo "* Create Data view on filebeat*"
 echo "* Filter logs in discover to app.name exist"
 echo "* Show in table column, app.name, index, message"
 pe "open https://localhost:5601/"
+wait
 
 clear

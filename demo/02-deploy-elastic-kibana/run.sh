@@ -18,12 +18,13 @@ pe "watch kubectl get pods"
 echo
 pe "kubectl get elasticsearch"
 echo
-pe "${__dir}/wait_elastic_ready.sh elasticsearch-logs"
 echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait
-#switchEditorIfNeeded
-runIde
+switchEditorIfNeeded
+echo
+pe "${__dir}/wait_elastic_ready.sh elasticsearch-logs"
+
 
 wait
 echo
@@ -52,12 +53,12 @@ pe "kubectl port-forward svc/kibana-logs-kb-http 5601:5601  > /dev/null 2>&1 &"
 echo ""
 echo "Authenticate with creds ELASTIC : username: elastic , password: $ELASTICSEARCH_PASSWORD"
 pe "open https://localhost:5601"
+wait
 echo
 echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait
 switchEditorIfNeeded
-runIde
 
 
 

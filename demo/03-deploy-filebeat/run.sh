@@ -19,6 +19,5 @@ echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait
 switchEditorIfNeeded
-runIde
 
 clear

@@ -7,8 +7,8 @@ TYPE_SPEED=35
 TYPE_SPEED=100
 ctx=kind-eck-demo
 elastic_ns=elastic-system
-switch_windows_editor=false
-window_editor_name="ECK-demo - Visual"
+switch_windows_editor=true
+window_editor_name="ECK-demo"
 editor_alias="code"
 kubectl config set-context $ctx --namespace=$elastic_ns
 clear
