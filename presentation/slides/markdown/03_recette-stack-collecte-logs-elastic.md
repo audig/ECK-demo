@@ -1,3 +1,20 @@
+## Elastic historique
+
+- First release: 2010
+- Produit de lancement: Elasticsearch
+- En 2015 changement de nom de la société: Elasticsearch -> Elastic
+- Elastic Stack: Elasticsearch, Kibana, Beats, Logstash
+- Services payant: X-Pack, Elastic Cloud, Elastic Cloud Entreprise
+- 2021: Adieu la license opensource
+ <!-- .element: class="list-fragment" -->
+
+![left](./assets/images/devil-elastic.png)
+<!-- .element: class="fragment" -->
+Apache 2.0 -> Server Side Public License & Elastic License
+<!-- .element: class="fragment" -->
+
+##==##
+
 ## Les ingrédients d'une bonne stack de logs
 
 

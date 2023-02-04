@@ -10,9 +10,9 @@
 # Programme du talk
 
 1. Recette d'une bonne stack de collecte de logs elastic
-3. ECK : en route vers l'étoile michelin
-4. Anatomie d'ECK
-5. Demo Time
-6. Conclusion
-7. Questions
+2. ECK : en route vers l'étoile michelin
+3. Anatomie d'ECK
+4. Demo Time
+5. Conclusion
+6. Questions
  <!-- .element: class="list-fragment" -->

@@ -37,7 +37,6 @@ Elastic Cloud sur Kubernetes facilite l'exécution d'Elasticsearch et de Kibana 
 * Service Discovery
 * Connecte l'ensemble des composants sans configuration spécifique
 * Gestion fine des roles des nœuds et des versions à déployer
-
  <!-- .element: class="list-fragment" -->
 
 Notes:
