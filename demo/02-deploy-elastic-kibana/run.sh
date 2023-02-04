@@ -47,18 +47,21 @@ deploy_dir="./kibana"
 pe "tree $deploy_dir"
 pe "kubectl apply -f $deploy_dir/kibana.yaml"
 pe "watch kubectl get pods"
-echo 
-echo "🌐 Go to Kibana UI 🌐"
-pe "kubectl port-forward svc/kibana-logs-kb-http 5601:5601  > /dev/null 2>&1 &"
-echo ""
-echo "Authenticate with creds ELASTIC : username: elastic , password: $ELASTICSEARCH_PASSWORD"
-pe "open https://localhost:5601"
-wait
 echo
 echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait
 switchEditorIfNeeded
+echo
+pe "watch kubectl get pods"
+echo
+echo "🌐 Go to Kibana UI 🌐"
+pe "kubectl port-forward svc/kibana-logs-kb-http 5601:5601  > /dev/null 2>&1 &"
+echo ""
+echo "Authenticate with creds ELASTIC : username: elastic , password: $ELASTICSEARCH_PASSWORD"
+pe "open https://localhost:5601 > /dev/null 2>&1"
+wait
+
 
 
 

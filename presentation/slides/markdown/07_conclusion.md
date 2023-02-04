@@ -14,7 +14,7 @@
   * Déploiement du collecteur de logs sur un cluster applicatif déconseillé
   * Norme de nommage et de cycle de vie des indexs
   * Gestion des indexs, HOT, WARM, COLD ...
-  * Footprint Mémoire importante
+  * Empreinte Mémoire importante
 <!-- .element: class="list-fragment" -->
 ##==##
 

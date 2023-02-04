@@ -33,7 +33,7 @@ echo "Let's go for:"
 echo "* Create Data view on filebeat*"
 echo "* Filter logs in discover to app.name exist"
 echo "* Show in table column, app.name, index, message"
-pe "open https://localhost:5601/"
+pe "open https://localhost:5601/ > /dev/null 2>&1"
 wait
 
 clear
