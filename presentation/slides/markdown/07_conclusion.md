@@ -7,7 +7,7 @@
   * Customisation fine du workload
   
 
-* ⚠️ Ne résous pas tous les problèmes ⚠️
+* ⚠️ Ne résout pas tous les problèmes ⚠️
 <!-- .element: class="list-fragment" -->
   * StafulSet dans Kubernetes
   * Quel type de stockage utiliser ?

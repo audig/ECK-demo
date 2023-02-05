@@ -1,22 +1,17 @@
-## Elastic historique
-
+# Elastic
+## ![h-100](./assets/images/elastic.png) Entreprise
+ 
 - First release: 2010
 - Produit de lancement: Elasticsearch
-- En 2015 changement de nom de la société: Elasticsearch -> Elastic
-- Elastic Stack: Elasticsearch, Kibana, Beats, Logstash
-- Services payant: X-Pack, Elastic Cloud, Elastic Cloud Entreprise
 - 2021: Adieu la license opensource
- <!-- .element: class="list-fragment" -->
+- Apache 2.0 -> Server Side Public License & Elastic License
 
-![left](./assets/images/devil-elastic.png)
-<!-- .element: class="fragment" -->
-Apache 2.0 -> Server Side Public License & Elastic License
-<!-- .element: class="fragment" -->
+
+![h-500](./assets/images/elastic-logos.png)
 
 ##==##
 
-## Les ingrédients d'une bonne stack de logs
-
+# Les ingrédients d'une bonne stack de logs
 
 - L'ingrédient principal : de quoi stocker toutes vos logs que vous allez ingérer
   <br><center>🥘 Elasticsearch 🥘</center><br>
@@ -27,6 +22,7 @@ Apache 2.0 -> Server Side Public License & Elastic License
 - Et pour pimper le tout, et en mettre plein les mirettes, de quoi observer les logs
   <br><center>🌿 Kibana 🌿</center><br>
  <!-- .element: class="list-fragment" -->
+
 ##==##
  
 ## Qualité de la recette
