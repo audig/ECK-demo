@@ -10,24 +10,49 @@ cd "${__dir}"
 
 echo "🥘 Deploy Elasticsearch 🥘"
 deploy_dir="./elasticsearch"
-pe "tree $deploy_dir"
+pe "head -n 7 $deploy_dir/elasticsearch.yaml"
 echo
 pe "kubectl apply -k $deploy_dir"
 echo
-pe "watch kubectl get pods"
-echo
 pe "kubectl get elasticsearch"
 echo
+pe "kubectl get statefulsets,pods"
+pe "clear"
+
+
+echo "🌶️ Deploy Kibana 🌶️"
+deploy_dir="./kibana"
+pe "head -n 10 $deploy_dir/kibana.yaml"
+echo
+pe "kubectl apply -f $deploy_dir/kibana.yaml"
+echo
+pe "kubectl get kibana"
+echo
+pe "kubectl get deploy,pods"
+pe "clear"
+
+
+echo "🌿 Deploy Filebeat 🌿"
+deploy_dir="./filebeat"
+pe "head -n 10 $deploy_dir/filebeat.yaml"
+echo
+pe "kubectl apply -k $deploy_dir"
+echo
+pe "kubectl get beat"
+echo
+pe "kubectl get ds,pods"
+pe "clear"
+
+
 echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait
 switchEditorIfNeeded
-echo
-pe "${__dir}/wait_elastic_ready.sh elasticsearch-logs"
-
 
 wait
 echo
+pe "kubectl get elasticsearch,kibana,beat"
+pe "clear"
 
 echo "🔍 Let's inspect our cluster status 🔍"
 pe "kubectl port-forward svc/elasticsearch-logs-es-http 9200:9200  > /dev/null 2>&1 &"
@@ -36,25 +61,7 @@ pe "ELASTICSEARCH_PASSWORD=\$(kubectl get secret elasticsearch-logs-es-elastic-u
 echo
 pe "curl -s -k -u elastic:\$ELASTICSEARCH_PASSWORD https://localhost:9200/_cluster/health | jq"
 
-
-wait
-
-clear
-
-
-echo "🌶️ Deploy Kibana 🌶️"
-deploy_dir="./kibana"
-pe "tree $deploy_dir"
-pe "kubectl apply -f $deploy_dir/kibana.yaml"
-pe "watch kubectl get pods"
-echo
-echo "🤿 Let's dive into the code 🤿"
-PROMPT_TIMEOUT=0
-wait
-switchEditorIfNeeded
-echo
-pe "watch kubectl get pods"
-echo
+pe "clear"
 echo "🌐 Go to Kibana UI 🌐"
 pe "kubectl port-forward svc/kibana-logs-kb-http 5601:5601  > /dev/null 2>&1 &"
 echo ""

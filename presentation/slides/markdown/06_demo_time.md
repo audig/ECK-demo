@@ -5,7 +5,6 @@
 * Déploiement de filebeat
 * Déploiement d'applications démo
 * Consultation des logs des applications démo
- <!-- .element: class="list-fragment" -->
 
 
 

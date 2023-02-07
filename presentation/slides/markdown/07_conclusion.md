@@ -1,6 +1,7 @@
 ## Conclusion
 
 * 🤔Est-ce que le déploiement d'un stack a été simple ?🤔
+<!-- .element: class="list-fragment" -->
   * Topologie cluster Elastic As Code
   * Connectivité de filebeat à Elasticsearch simplifié (Auth, TLS)
   * Autodiscover de la configuration de logging
@@ -15,7 +16,7 @@
   * Norme de nommage et de cycle de vie des indexs
   * Gestion des indexs, HOT, WARM, COLD ...
   * Empreinte Mémoire importante
-<!-- .element: class="list-fragment" -->
+
 ##==##
 
 ## Outils utilisés pour la démo

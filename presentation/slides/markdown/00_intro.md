@@ -2,7 +2,7 @@
 
 # ![feather-small](./assets/images/eck-logo-color.png) ECK 
 
-## ECK, la recette parfaite pour une stack Elastic?
+## ECK, la recette parfaite pour un collecteur de logs ?
 
 
 ##==##
@@ -15,4 +15,3 @@
 4. Demo Time
 5. Conclusion
 6. Questions
- <!-- .element: class="list-fragment" -->

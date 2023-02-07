@@ -18,5 +18,6 @@ echo "⛵ Install ECK operator ⛵"
 p "helm repo add elastic https://helm.elastic.co"
 pe "helm upgrade -i eck-operator elastic/eck-operator -n elastic-system --create-namespace"
 
-pe "kubectl get pods --watch"
+pe "kubectl get pods"
+pe "kubectl get crds | grep 'elastic'"
 
