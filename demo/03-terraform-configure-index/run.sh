@@ -16,6 +16,5 @@ pe "kubectl port-forward svc/elasticsearch-logs-es-http 9200:9200  > /dev/null 2
 echo
 pe "export ELASTICSEARCH_PASSWORD=\$(kubectl get secret elasticsearch-logs-es-elastic-user -n elastic-system -o jsonpath='{.data.elastic}' | base64 --decode)"
 echo
-terraform init
-pe "terraform plan"
-pe "terraform apply"
+pe "terraform init"
+pe "terraform apply -auto-approve"

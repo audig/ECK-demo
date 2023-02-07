@@ -14,7 +14,8 @@ pe "tree $deploy_dir"
 echo
 pe "kubectl apply -k $deploy_dir"
 echo
-pe "watch kubectl get pods"
+pe "kubectl get deploy,pods"
+pe "clear"
 echo "🤿 Let's dive into the code 🤿"
 PROMPT_TIMEOUT=0
 wait
@@ -24,8 +25,7 @@ wait
 
 echo "Generate some logs to demo apps"
 pe "ab -n 500 -c 20 http://localhost:30000/"
-echo
-
+pe "clear"
 echo "🌐 Go to Kibana UI 🌐"
 echo
 pe "kubectl port-forward svc/kibana-logs-kb-http 5601:5601  > /dev/null 2>&1 &"
